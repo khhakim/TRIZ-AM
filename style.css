@@ -47,7 +47,7 @@ header {
     padding: 10px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     /* Add this if the header height is variable and could prevent sticky footer */
-    /* flex-shrink: 0; */
+    flex-shrink: 0; /* Prevents shrinking */
 }
 
 header .container {
@@ -240,7 +240,6 @@ nav .nav-links a:hover {
     border-radius: 10px;
     cursor: pointer;
     /* REMOVE shadow and any 3D transform properties from here */
-    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); */
 }
 
 .flashcard-inner {
@@ -489,8 +488,7 @@ footer {
     padding: 20px 0;
     /* margin-top: 40px; */ /* Removed fixed margin-top */
     font-size: 0.9em;
-    /* Add this if the footer height is variable and could prevent sticky footer */
-    /* flex-shrink: 0; */
+    flex-shrink: 0; /* Prevents shrinking */
 }
 
 footer a {

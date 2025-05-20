@@ -21,22 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close menu when clicking outside (optional, requires more complex logic)
     // Close menu when a link is clicked (useful for single page apps or if menu stays open)
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-             const icon = hamburger.querySelector('i');
-             icon.classList.remove('fa-times');
-             icon.classList.add('fa-bars');
+    if (navLinks) { // Check if navLinks exists
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                 const icon = hamburger ? hamburger.querySelector('i') : null;
+                 if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                 }
+            });
         });
-    });
+    }
+
 
      // Close menu if window is resized and menu is active (handle orientation changes)
      window.addEventListener('resize', () => {
-         if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+         if (window.innerWidth > 768 && navLinks && navLinks.classList.contains('active')) {
               navLinks.classList.remove('active');
-              const icon = hamburger.querySelector('i');
-              icon.classList.remove('fa-times');
-              icon.classList.add('fa-bars');
+              const icon = hamburger ? hamburger.querySelector('i') : null;
+              if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+              }
          }
      });
 
