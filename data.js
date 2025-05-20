@@ -7,114 +7,113 @@ const trizPrinciples = [
     {
         number: 1,
         name: "Segmentation",
-        brief: "Divide a system into independent, adjustable, or easily disassembled parts.",
-        example: "Modular furniture, pre-fabricated house sections, or an articulated bus.",
+        brief: "The designer increases manufacturability by dividing the artifact into smaller components where the part is larger than the expected build volume.",
+        example: "A mask that is too large to be printed directly is segmented in the digital 3D model design phase into two smaller parts that can be combined. The two parts are printed separately and then combined.",
         imageUrl: "" // Optional: Add a URL to an image, e.g., "images/segmentation.jpg"
     },
     {
         number: 2,
         name: "Taking Out (Extraction)",
-        brief: "Separate an interfering part or property from an object, or single out the only necessary part.",
-        example: "Removing the noisy compressor from a refrigerator and placing it in another room, or an air-conditioner's external unit.",
+        brief: "Scaling artefacts and trimming or removing non-critical volumes and unnecessary parts, such as thick walls and hollow interiors, can ensure printability, reduce time and minimize weight.",
+        example: "Taking the thick walls and internal fillings out of a printed part reduce sprinting time and weight.",
         imageUrl: ""
     },
     {
         number: 3,
         name: "Local Quality",
-        brief: "Change an object's structure, external environment, or external influence from uniform to non-uniform.",
-        example: "Using different materials or coatings on different parts of an object; varying temperature, pressure, or density along an object.",
+        brief: "Achieve a degree of freedom/desired behaviour by applying a customized material distribution: AM can manufacture parts with non-uniform wall thicknesses and generation of cellular structures(non-uniform) to improve efficiency.",
+        example: "Increasing the density of the lower end of the scaffold structure in medical applications allows it to withstand greater loads.",
         imageUrl: ""
     },
      {
         number: 4,
         name: "Asymmetry",
-        brief: "Change the shape of an object or external environment from symmetrical to asymmetrical.",
-        example: "An asymmetric wing profile on an aircraft creating lift, or an off-center design for balance.",
+        brief: "Anisotropic structures; designing the parts by considering the build orientation, utilizing the product orientation of a layer-like structure to increase the part’s strength in the direction of energy flow, especially for load-bearing parts for FDM.",
+        example: "In the two opposite directions of constructing an eyeglass frame, in the case of the left side, not only does the support structure have to be added, but the subsequent surface treatment also becomes more problematic.",
         imageUrl: ""
     },
-    // --- Add your data for principles 5 through 32 here ---
     {
         number: 5,
-        name: "Principle 5 Name",
-        brief: "Brief 5",
-        example: "Example 5",
+        name: "Merging",
+        brief: "Integrate additional functionality for better functional performance and reduce assembly times, part sizes, and interfaces by integrating functional parts and standard geometries (e.g. threads, holes) into the design by printing a single part or printing to build the entire assemblies.",
+        example: "In this example of a desk mount headphone hanger/clamp, standard threads and screw holes are integrated into the design of a single product.",
         imageUrl: ""
     },
      {
         number: 6,
-        name: "Principle 6 Name",
-        brief: "Brief 6",
-        example: "Example 6",
+        name: "Universality",
+        brief: "Performing multiple functions by adding functional features in standard components.",
+        example: "The handle of the toothbrush is designed as a hollow structure that can store toothpaste.",
         imageUrl: ""
     },
     {
         number: 7,
-        name: "Principle 7 Name",
-        brief: "Brief 7",
-        example: "Example 7",
+        name: "Nested Doll",
+        brief: "Add function(s) to designs by incorporating components or functional features in unused internal volumes or non-functional aesthetic models.",
+        example: "In this case, a model in the form of an elephant has been printed layer by layer, the tusks redesigned, and the top casing removed. This provides storage space and can be used as a mobile phone holder.",
         imageUrl: ""
     },
     {
         number: 8,
-        name: "Principle 8 Name",
-        brief: "Brief 8",
-        example: "Example 8",
+        name: "Preliminary Action",
+        brief: "Design an object with features easily post-processed; otherwise, it will affect the actual design and shape.",
+        example: "For example, producing holes using FDM may have an outcome such as burrs if the gap is too small; it is challenging to remove burrs.",
         imageUrl: ""
     },
     {
         number: 9,
-        name: "Principle 9 Name",
-        brief: "Brief 9",
-        example: "Example 9",
+        name: "Beforehand Cushioning",
+        brief: "Designing parts that can be easily and temporarily replaced when replacement parts and tools are in short supply or when parts are prone to wear and tear increases the product's overall life. It allows for a quick return to production.",
+        example: "Design parts that can easily be substituted temporarily when there is a shortage of parts or tools for replacement, such as the toy car tyre casing, have been designed to be replaced when worn.",
         imageUrl: ""
     },
     {
         number: 10,
-        name: "Principle 10 Name",
-        brief: "Brief 10",
-        example: "Example 10",
+        name: "The Other Way Around",
+        brief: "The core thinking of the principle of the other way around is reverse thinking. If something is manufactured in one particular way, an attempt is made to manufacture it opposite to avoid inherent problems.",
+        example: "This cap is designed to avoid the uncontrolled flow of liquid in the open state, thus reducing waste.",
         imageUrl: ""
     },
     {
         number: 11,
-        name: "Principle 11 Name",
-        brief: "Brief 11",
-        example: "Example 11",
+        name: "Spheroidality",
+        brief: "AM enables the creation of complex topologically optimized geometries to design lighter, more organic, and unique-looking products with reduced mass and/or improved performance.",
+        example: "Design lighter, more organic, aesthetically unique products using topology optimization (TO) methods.",
         imageUrl: ""
     },
     {
         number: 12,
-        name: "Principle 12 Name",
-        brief: "Brief 12",
-        example: "Example 12",
+        name: "Dynamics",
+        brief: "Customized design according to its natural behaviour in controlled conditions allows for movement by connecting parts using an integrated connection on point/geometry to facilitate assembly and disassembly.",
+        example: "The design can be customized according to its natural behaviour in controlled conditions, such as prosthetic hands.",
         imageUrl: ""
     },
     {
         number: 13,
-        name: "Principle 13 Name",
-        brief: "Brief 13",
-        example: "Example 13",
+        name: "Another Dimension",
+        brief: "Designers can design parts using multi-scale structures on multiple levels of a single component, micro-scale/meson-scale/macro-scale.",
+        example: "Designing parts with multi-functional artifacts involving multi-scale structures. The multi-scale system consists of micro, meso, and macro scales.",
         imageUrl: ""
     },
     {
         number: 14,
-        name: "Principle 14 Name",
-        brief: "Brief 14",
-        example: "Example 14",
+        name: "Blessing in Disguise",
+        brief: "With AM, it is relatively easy to manufacture different patterns and textures embedded in the product's surface. Create customized textures or design multiple short overhangs to ensure good grip and interaction with the environment.",
+        example: "3D Print soles with custom textures for added friction.",
         imageUrl: ""
     },
     {
         number: 15,
-        name: "Principle 15 Name",
-        brief: "Brief 15",
-        example: "Example 15",
+        name: "Self-Service",
+        brief: "Designing an interlocking mechanism or incorporating snap fits into the part will provide a more permanent and adequate fit between components, reducing assembly time and the number of components.",
+        example: "The designer implements snap fitting in a design instead of adding fasteners to an assembly. By doing this, all parts are created using a single machine.",
         imageUrl: ""
     },
     {
         number: 16,
-        name: "Principle 16 Name",
-        brief: "Brief 16",
-        example: "Example 16",
+        name: "Copying",
+        brief: "Minimize design time and effort and simplify the assembly process by re-using the geometry of already designed components where CAD data is already available or by integrating standard geometries (e.g. standard threads, holes) into the design.",
+        example: "When creating an accessory for a model tool, the designer can leverage an existing thread design rather than measuring and sizing the attachment thread on a model.",
         imageUrl: ""
     },
     {
