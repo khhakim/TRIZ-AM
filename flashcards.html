@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRIZ Principles Flashcards</title>
+    <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- For hamburger icon -->
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="site-title">TRIZ Tool</h1>
+            <nav>
+                <button class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <!-- Added Home link -->
+                    <li><a href="index.html">Home</a></li>
+                    <!-- Mark Flashcards as active -->
+                    <li><a href="flashcards.html" class="active">Flashcards</a></li>
+                    <li><a href="matrix.html">Contradiction Matrix</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h2>TRIZ Principles</h2>
+
+            <!-- === START New Grid View Section === -->
+            <div id="grid-view">
+                <h3>Select a TRIZ Principle</h3>
+                <div id="principle-grid">
+                    <!-- Grid items will be populated by JavaScript -->
+                    <p>Loading principles...</p>
+                </div>
+            </div>
+            <!-- === END New Grid View Section === -->
+
+
+            <!-- === START Existing Single Card View Section (Now Wrapped) === -->
+            <div id="single-card-view" class="hidden"> <!-- Add 'hidden' class for initial state -->
+                 <div class="flashcard-container">
+                    <div class="flashcard" id="triz-flashcard">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <h3 id="card-front-title">Loading...</h3>
+                                <p id="card-front-content"></p>
+                            </div>
+                            <div class="flashcard-back">
+                                 <h3 id="card-back-title">Loading...</h3>
+                                <div class="card-back-content">
+                                    <p id="card-back-text"></p>
+                                    <img id="card-back-image" src="" alt="Example illustration">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard-controls">
+                    <button id="prev-card"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <span id="card-counter">Card 1 of 40</span>
+                    <button id="next-card">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+
+                 <!-- Optional: Button to go back to grid -->
+                 <div class="back-to-grid">
+                     <button id="back-to-grid-btn"><i class="fas fa-th"></i> Back to Selection Grid</button>
+                 </div>
+            </div>
+            <!-- === END Existing Single Card View Section === -->
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© Your Name/App Name <span id="current-year-flashcards"></span>. All rights reserved.</p>
+             <!-- Optional: <a href="#">About TRIZ</a> -->
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="data.js"></script> <!-- Load TRIZ data -->
+    <script src="flashcards.js"></script> <!-- Specific flashcard logic -->
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year-flashcards').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

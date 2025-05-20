@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRIZ Analysis Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- For hamburger icon -->
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="site-title">TRIZ Tool</h1>
+            <nav>
+                <button class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <!-- Added Home link and marked it active -->
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="flashcards.html">Flashcards</a></li>
+                    <li><a href="matrix.html">Contradiction Matrix</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h2>Unlock Innovative Solutions with TRIZ Analysis</h2>
+            <p class="tagline">Systematic methods for problem-solving and innovation.</p>
+
+            <section class="options-grid">
+                <a href="flashcards.html" class="option-card">
+                    <div class="card-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Explore the 40 TRIZ Principles (Flashcards)</h3>
+                    <p>Learn and review the fundamental innovation principles.</p>
+                </a>
+
+                <a href="matrix.html" class="option-card">
+                     <div class="card-icon"><i class="fas fa-table"></i></div>
+                    <h3>Analyze with the TRIZ Contradiction Matrix</h3>
+                    <p>Find recommended principles for technical contradictions.</p>
+                </a>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© Your Name/App Name <span id="current-year"></span>. All rights reserved.</p>
+             <!-- Optional: <a href="#">About TRIZ</a> -->
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRIZ Contradiction Matrix</title>
+    <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- For hamburger icon -->
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="site-title">TRIZ Tool</h1>
+             <nav>
+                <button class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <!-- Added Home link -->
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="flashcards.html">Flashcards</a></li>
+                    <!-- Mark Matrix as active -->
+                    <li><a href="matrix.html" class="active">Contradiction Matrix</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h2>Contradiction Matrix Analysis</h2>
+
+            <div class="matrix-selectors">
+                <div class="selector-group">
+                    <label for="improve-feature">Feature to Improve:</label>
+                    <select id="improve-feature">
+                        <option value="">-- Select Feature --</option>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+
+                 <div class="selector-group">
+                    <label for="preserve-feature">Feature to Preserve/Worsen:</label>
+                    <select id="preserve-feature">
+                         <option value="">-- Select Feature --</option>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="matrix-results">
+                <h3>Recommended Principles:</h3>
+                <p id="matrix-instructions">Select 'Feature to Improve' and 'Feature to Preserve' from the dropdowns above to see suggested principles.</p>
+                <ul id="recommended-principles">
+                    <!-- Recommended principles will appear here -->
+                </ul>
+            </div>
+
+             <div class="matrix-note">
+                 <p>Note: This matrix is based on the standard TRIZ 39 Technical Parameters. Numbers refer to the 40 Inventive Principles.</p>
+             </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© Your Name/App Name <span id="current-year-matrix"></span>. All rights reserved.</p>
+             <!-- Optional: <a href="#">About TRIZ</a> -->
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="data.js"></script> <!-- Load TRIZ data -->
+    <script src="matrix.js"></script> <!-- Specific matrix logic -->
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year-matrix').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
