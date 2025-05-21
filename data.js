@@ -237,22 +237,22 @@ const trizPrinciples = [
 // The index of each feature corresponds to its row/column index in the matrix data below.
 // You MUST replace these placeholders with the names of your 16 features.
 const trizFeatures = [
-    "Your Feature 1",  // 1
-    "Your Feature 2",  // 2
-    "Your Feature 3",  // 3
-    "Your Feature 4",  // 4
-    "Your Feature 5",  // 5
-    "Your Feature 6",  // 6
-    "Your Feature 7",  // 7
-    "Your Feature 8",  // 8
-    "Your Feature 9",  // 9
-    "Your Feature 10", // 10
-    "Your Feature 11", // 11
-    "Your Feature 12", // 12
-    "Your Feature 13", // 13
-    "Your Feature 14", // 14
-    "Your Feature 15", // 15
-    "Your Feature 16", // 16
+    "Weight of object",  // 1
+    "Length of object",  // 2
+    "Surface of object",  // 3
+    "Volume of object",  // 4
+    "Stress or Pressure",  // 5
+    "Shape",  // 6
+    "Stability",  // 7
+    "Strength",  // 8
+    "Loss of substance",  // 9
+    "Loss of time", // 10
+    "Loss of cost", // 11
+    "Quantity of substance", // 12
+    "Reliability", // 13
+    "Ease of manifacturing", // 14
+    "Ease of repair", // 15
+    "Device complexity", // 16
     // Ensure you have exactly 16 features listed here
 ];
 
@@ -269,37 +269,310 @@ const trizFeatures = [
 // Replace the example data with your actual matrix data. The principle numbers in these arrays
 // can still be any number from 1 to 40, but only 1-32 will have details available from trizPrinciples.
 const trizMatrix = [
-    // Row 0: Improve "Your Feature 1" (Corresponds to trizFeatures[0])
+    // Row 0: Improve "Weight of object" (Corresponds to trizFeatures[0])
     [
-        [],     // vs "Your Feature 1" (1) - No contradiction with self
-        [8, 15, 29, 34], // vs "Your Feature 2" (2) - Replace with YOUR principles (numbers from 1-40)
-        [15, 8], // vs "Your Feature 3" (3) - Replace with YOUR principles
-        [],     // vs "Your Feature 4" (4) - Replace with YOUR principles
-        [], [], [], [], [], [], [], [], [], [], [], [] // Ensure 16 elements in this row
+        [],     // vs "Weight of object" (1) - No contradiction with self
+        [1, 10, 12, 20],
+        [2, 10, 21],
+        [2, 5, 11, 21],
+        [8, 10], 
+        [8, 10, 11, 25],
+        [1, 16, 22],
+        [2, 8, 17],
+        [5, 10],
+        [8, 16, 21],
+        [3, 17],
+        [6, 16],
+        [3, 8],
+        [1, 21, 30],
+        [2, 9, 17],
+        [1, 8, 16] // Ensure 16 elements in this row
     ],
-    // Row 1: Improve "Your Feature 2" (Corresponds to trizFeatures[1])
+    // Row 1: Improve "Length of object" (Corresponds to trizFeatures[1])
     [
-        [8, 15, 29, 34], // vs "Your Feature 1" (1) - Replace with YOUR principles
-        [],     // vs "Your Feature 2" (2) - No contradiction with self
-        [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] // Ensure 16 elements in this row
+        [21, 22],
+        [],
+        [7, 8, 13, 22],
+        [2, 11],
+        [1, 11, 21],
+        [7, 10, 11, 12],
+        [21],
+        [11, 12, 16],
+        [8, 21],
+        [11],
+        [3],
+        [],
+        [12],
+        [12, 13, 17, 23],
+        [3],
+        [1, 16],
     ],
-     // --- CONTINUE ADDING ALL 16 ROWS FOR ALL 16 FEATURES TO IMPROVE ---
-     // Each row must contain exactly 16 elements (arrays of principle numbers).
-     // Example structure for row 2 (Improving "Your Feature 3"):
-    // [
-    //     [1, 7, 15, 17], // vs "Your Feature 1" (1) - Replace with YOUR principles
-    //     [], // vs "Your Feature 2" (2) - Replace with YOUR principles
-    //     [], // vs "Your Feature 3" (3) - No contradiction with self
-    //     // ... fill in the rest of the 16 elements for this row (arrays of principle numbers from 1-40) ...
-    //     []
-    // ],
-    // ... (Rows 3 through 14) ...
-    // Row 15: Improve "Your Feature 16" (Corresponds to trizFeatures[15])
+    // Row 2: Improve "Surface of object" (Corresponds to trizFeatures[2])
     [
-         [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []
-         // Ensure 16 elements in this row (arrays of principle numbers from 1-40)
-    ]
-    // Ensure you have exactly 16 rows (inner arrays) in this matrix
+        [2, 11],
+        [7, 16],
+        [],
+        [],
+        [8, 12],
+        [],
+        [2],
+        [22],
+        [8, 11],
+        [4, 21],
+        [17],
+        [2, 4, 22],
+        [4, 21, 22],
+        [1, 22, 24],
+        [],
+        [1] // Ensure 16 elements in this row
+    ],
+    // Row 3: Improve "Volume of object" (Corresponds to trizFeatures[3])
+    [
+        [8, 11, 21],
+        [2, 11, 21],
+        [],
+        [],
+        [21],
+        [2, 7, 21],
+        [20, 21, 22],
+        [11, 12, 13],
+        [8, 20, 21],
+        [19, 21],
+        [3, 18],
+        [3, 21],
+        [2, 21],
+        [1, 21, 30],
+        [1],
+        [1, 18] // Ensure 16 elements in this row
+    ],
+    // Row 4: Improve "Stress or pressure" (Corresponds to trizFeatures[4])
+    [
+        [8, 10],
+        [1, 11, 21],
+        [8, 12],
+        [21],
+        [],
+        [4, 8, 10, 21],
+        [2, 21, 22],
+        [3, 22],
+        [3, 8],
+        [4],
+        [3, 17, 18],
+        [8, 11],
+        [8, 10, 21],
+        [1, 21],
+        [],
+        [1, 21] // Ensure 16 elements in this row
+    ],
+    // Row 5: Improve "Shape" (Corresponds to trizFeatures[5])
+    [
+        [3, 8, 25, 27],
+        [7, 8, 10, 11],
+        [],
+        [2, 7, 21, 27],
+        [8, 11, 12, 20],
+        [],
+        [1, 4, 27],
+        [8, 11, 22],
+        [3, 5, 21],
+        [8, 11, 13, 20],
+        [17, 26],
+        [14],
+        [8, 22],
+        [1, 13, 23, 26, 31],
+        [1, 2, 10],
+        [1] // Ensure 16 elements in this row
+    ],
+    // Row 6: Improve "Stability" (Corresponds to trizFeatures[6])
+    [
+        [1, 16, 22],
+        [],
+        [],
+        [20, 21, 22],
+        [2, 21, 22],
+        [1, 4, 14],
+        [],
+        [12, 13],
+        [2, 11, 22],
+        [17, 21],
+        [3, 9, 18],
+        [12, 19, 21],
+        [],
+        [21, 29],
+        [2, 9, 21],
+        [2, 14, 16, 21] // Ensure 16 elements in this row
+    ],
+    // Row 7: Improve "Strength" (Corresponds to trizFeatures[7])
+    [
+        [1, 16, 17, 22],
+        [11, 12, 16],
+        [22],
+        [11, 12, 13],
+        [3, 8, 22],
+        [8, 21, 22],
+        [10, 13, 21],
+        [],
+        [8, 12, 21],
+        [3, 8],
+        [3, 18, 21],
+        [8, 17],
+        [3, 9],
+        [3, 8, 9, 19],
+        [3, 9, 17],
+        [2, 10, 25] // Ensure 16 elements in this row
+    ],
+    // Row 8: Improve "Loss of substance" (Corresponds to trizFeatures[8])
+    [
+        [6, 14, 1, 9, 21, 25],
+        [8],
+        [8, 18],
+        [3, 18],
+        [3, 8],
+        [3, 5, 21],
+        [2, 11, 22],
+        [3, 17],
+        [],
+        [8, 12, 21],
+        [],
+        [3, 6, 8],
+        [8, 21],
+        [12, 20, 25],
+        [2, 17, 20, 21],
+        [8, 21] // Ensure 16 elements in this row
+    ],
+    // Row 9: Improve "Loss of time" (Corresponds to trizFeatures[9])
+    [
+        [5, 8],
+        [5, 11],
+        [4, 8, 13, 21],
+        [19, 21],
+        [4],
+        [4, 8, 13],
+        [3, 5, 14, 21],
+        [3],
+        [8, 21],
+        [],
+        [3, 18],
+        [21],
+        [4, 8],
+        [4, 20, 21, 28],
+        [1, 8, 19],
+        [6] // Ensure 16 elements in this row
+    ],
+    // Row 10: Improve "Loss of cost" (Corresponds to trizFeatures[10])
+    [
+        [2, 17, 18],
+        [17, 30],
+        [3, 21],
+        [2, 3, 17, 18],
+        [3, 18],
+        [17, 21],
+        [3, 18],
+        [3, 9, 18, 27],
+        [9, 17, 32],
+        [],
+        [],
+        [17, 30],
+        [3, 18],
+        [1, 2, 17, 30],
+        [9],
+        [] // Ensure 16 elements in this row
+    ],
+    // Row 11: Improve "Quantity of substance" (Corresponds to trizFeatures[11])
+    [
+        [16, 17, 21],
+        [],
+        [2, 4, 22],
+        [],
+        [3, 8, 11],
+        [11, 21],
+        [2, 12, 13, 22],
+        [8, 11, 21],
+        [3, 6, 8],
+        [],
+        [17, 30],
+        [],
+        [3, 22],
+        [1, 17, 21],
+        [2, 8, 15, 19],
+        [3, 8, 10, 17] // Ensure 16 elements in this row
+    ],
+    // Row 12: Improve "Reliability" (Corresponds to trizFeatures[12])
+    [
+        [3, 8],
+        [9, 12],
+        [4, 19, 21, 40],
+        [2, 21],
+        [8, 21],
+        [1, 9, 21],
+        [],
+        [9],
+        [8, 21],
+        [4, 8],
+        [3, 18, 21],
+        [3, 22],
+        [],
+        [],
+        [1, 9],
+        [1, 10, 21] // Ensure 16 elements in this row
+    ],
+    // Row 13: Improve "Ease of manifacturing" (Corresponds to trizFeatures[13])
+    [
+        [1, 10, 17, 25],
+        [1, 12, 13, 23],
+        [22, 24],
+        [1, 21, 30],
+        [1, 21],
+        [1, 10, 17, 23],
+        [1, 9, 10, 29],
+        [1, 3, 8, 29],
+        [12, 20],
+        [4, 20, 21, 29],
+        [3, 18, 26],
+        [1, 21, 30],
+        [],
+        [],
+        [1, 9, 21],
+        [1, 16, 10, 21] // Ensure 16 elements in this row
+    ],
+    // Row 14: Improve "Ease of repair" (Corresponds to trizFeatures[14])
+    [
+        [2, 9, 17, 21],
+        [3, 18],
+        [15],
+        [1],
+        [10],
+        [1, 2, 4, 10],
+        [2, 21],
+        [1, 2, 9],
+        [2, 17, 20, 21],
+        [1, 8, 15, 19],
+        [9, 30],
+        [2, 8, 15],
+        [1, 8, 9],
+        [1, 8, 9, 21],
+        [],
+        [1, 9, 10, 21] // Ensure 16 elements in this row
+    ],
+    // Row 15: Improve "Device complexity" (Corresponds to trizFeatures[15])
+    [
+        [2, 16, 21],
+        [16],
+        [6],
+        [1],
+        [1, 21],
+        [10, 12],
+        [2, 13, 14],
+        [2, 10],
+        [8, 21],
+        [6],
+        [],
+        [3, 8, 10, 17],
+        [1, 10, 21],
+        [1, 10, 1, 6, 17],
+        [1, 10],
+        [] // Ensure 16 elements in this row
+    ],
 ];
 
 // Helper to get principle details by number (DO NOT CHANGE)
