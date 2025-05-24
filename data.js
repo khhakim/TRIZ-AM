@@ -118,114 +118,114 @@ const trizPrinciples = [
     },
     {
         number: 17,
-        name: "Principle 17 Name",
-        brief: "Brief 17",
-        example: "Example 17",
+        name: "Cheap short-living",
+        brief: "Some low-cost or wear-prone parts manufactured by traditional processes are more cost-effective than 3D direct printing, reducing costs and facilitating maintenance by incorporating a standard interface for that component in the design.",
+        example: "The FDM prints the connections layer by layer and prepares the standard threaded holes in the connections. The required bolts and nuts can be made from existing standard bolts and nuts manufactured by the subtractive manufacturing process, which is cheaper, easier to obtain and stronger than FDM material.",
         imageUrl: ""
     },
     {
         number: 18,
-        name: "Principle 18 Name",
-        brief: "Brief 18",
-        example: "Example 18",
+        name: "Porous materials",
+        brief: "Leverage the cellular structure. Replacing the solid volume with a cellular network reduces weight and material costs. The lattice structure can absorb energy through elastic or plastic movement, deformation, or breakage to keep the part stable, resulting in a lightweight but stiff product.",
+        example: "A vase’s structure is replaced with a cellular structure to provide the same functionality with less material.",
         imageUrl: ""
     },
     {
         number: 19,
-        name: "Principle 19 Name",
-        brief: "Brief 19",
-        example: "Example 19",
+        name: "Colour changes",
+        brief: "Convey information with colour using multi-colour AM: Some AM processes can build multi-material structures. Use the multi-material capability to embed and convey information through colour.",
+        example: "Convey information about parts with colour coding. For example, with different coloured housings, cyan at the top, blue parts in the middle and orange for the base.",
         imageUrl: ""
     },
     {
         number: 20,
-        name: "Principle 20 Name",
-        brief: "Brief 20",
-        example: "Example 20",
+        name: "Discarding and recovering",
+        brief: "Discarding refers to removing certain objects from the system, and regeneration refers to recovering certain objects in the system that have been consumed. In additive manufacturing, the principal manifestations are: (1) Remove the sharp edges in a design for better accuracy； (2) Prevent parts warping by reducing the cross-sectional area in each layer to reduce residual stresses or by designing rounded edges to increase surface area.",
+        example: "Warping is caused by a build-up of residual stress in each layer as it cools. This effect is less intense when the cross-sectional area is reduced. Less residual stress in the layers while using less dense infill.",
         imageUrl: ""
     },
     {
         number: 21,
-        name: "Principle 21 Name",
-        brief: "Brief 21",
-        example: "Example 21",
+        name: "Parameter changes",
+        brief: "The AM process can utilize various materials. Appropriate materials are used for different use cases. For example, using elastic materials to absorb energy, use flexible filaments to produce parts easily stretched or bent.",
+        example: "Use flexible filaments to produce parts that can be easily stretched or bent, such as TPE or TPU materials.",
         imageUrl: ""
     },
     {
         number: 22,
-        name: "Principle 22 Name",
-        brief: "Brief 22",
-        example: "Example 22",
+        name: "Composite materials",
+        brief: "Use composite materials to improve product properties, or utilize the capabilities of the AM process to create multi-material structures, using different materials in different parts of the component, designed to perform differently to achieve the desired properties.",
+        example: "Implanting complex electronics through multi-material printing at the beginning of AM product manufacturing eliminates the need for manual assembly.",
         imageUrl: ""
     },
     {
         number: 23,
-        name: "Principle 23 Name",
-        brief: "Brief 23",
-        example: "Example 23",
+        name: "Minimize Vertical Aspect Ratio",
+        brief: "Improve print success by orienting or redesigning a part to have a lower vertical aspect ratio.",
+        example: "It was necessary to split the piece in two to make it more stable when printing. This is because its aspect ratio and small base make it unstable.",
         imageUrl: ""
     },
     {
         number: 24,
-        name: "Principle 24 Name",
-        brief: "Brief 24",
-        example: "Example 24",
+        name: "Improve the accuracy of critical curves and profile",
+        brief: "Improve the accuracy of critical curves and profiles by orienting them in the plane of highest resolution.",
+        example: "This example shows an object printed with an overhang from 40 to 75 degrees. As the angle to the vertical increases, the surface roughness increases, producing a low-resolution part. Therefore, positioning critical curves and contours in this vertical plane will have a better result than placing them elsewhere. ",
         imageUrl: ""
     },
     {
         number: 25,
-        name: "Principle 25 Name",
-        brief: "Brief 25",
-        example: "Example 25",
+        name: "Create Internal Chambers/ Channels",
+        brief: "AM enables complex internal geometries to be created. Using customized internal channels/chambers, fluids can be directed and distributed or adjusted for specific physical processes occurring inside the chamber, such as energy or material conversion. It also helps to change the magnitude of energy (e.g. change acoustic or kinetic energy, increase/decrease pressure).",
+        example: "Additive manufacturing allows for the integrated construction of complex internal cavity structures.",
         imageUrl: ""
     },
     {
         number: 26,
-        name: "Principle 26 Name",
-        brief: "Brief 26",
-        example: "Example 26",
+        name: "Personalization service",
+        brief: "Use 3D scanning or custom design to personalize parts or products. This allows each product manufactured by AM to have different geometries, colors, additional text, and decorations to meet the different needs of different users.",
+        example: "Orthotic insoles for flatfoot rehabilitation are printed and customized according to different people's foot shapes.",
         imageUrl: ""
     },
     {
         number: 27,
-        name: "Principle 27 Name",
-        brief: "Brief 27",
-        example: "Example 27",
+        name: "Leverage the Structure for Function",
+        brief: "Achieve desired mechanical properties by tailoring the structure's geometry, such as creating void designs to conduct mechanical energy or forces with reduced weight.",
+        example: "This example shows an example of a door latch that the intermediate structure itself can rotate.",
         imageUrl: ""
     },
     {
         number: 28,
-        name: "Principle 28 Name",
-        brief: "Brief 28",
-        example: "Example 28",
+        name: "Reduce print time",
+        brief: "Reduce print time by orienting the shortest dimension parallel to the slowest fabrication direction.",
+        example: "Orienting the shortest dimension of the part in a horizontal direction allows for faster and more stable printing. This is considered to be a standard best practice among experienced AM designers.",
         imageUrl: ""
     },
     {
         number: 29,
-        name: "Principle 29 Name",
-        brief: "Brief 29",
-        example: "Example 29",
+        name: "Functional joints and interfaces",
+        brief: "Eliminating assembly steps and time and improving the overall strength and stability of the part by directly printing standard functional joints and interfaces or customizing the geometry to fit now with the geometry of other components for specific use cases.",
+        example: "3D printed PCB circuit prototyping boards with a standard pin arrangement for easy connection of various electronic components such as sensors, LEDs and motors.",
         imageUrl: ""
     },
     {
         number: 30,
-        name: "Principle 30 Name",
-        brief: "Brief 30",
-        example: "Example 30",
+        name: "Scale for Requirement",
+        brief: "Satisfy alternative functional and different parametric requirements by scaling the design.",
+        example: "In this example, the parametric design tool allows the user to adjust or scale the size of the phone holder in the original design to suit different makes and models of phones.",
         imageUrl: ""
     },
     {
         number: 31,
-        name: "Principle 31 Name",
-        brief: "Brief 31",
-        example: "Example 31",
+        name: "High resolution",
+        brief: "Make full use of the capabilities of the selected AM technology for manufacturing purposes by using. STL files at a reasonably high resolution.",
+        example: "..",
         imageUrl: ""
     },
     {
         number: 32,
-        name: "Principle 32 Name",
-        brief: "Brief 32",
-        example: "Example 32",
+        name: "Modularity",
+        brief: "Improve product flexibility by designing modular components that recombine to achieve different functionality.",
+        example: "In this example, the drawers are designed as modular components, arranged in simple combinations to hold many items neatly and aesthetically pleasingly.",
         imageUrl: ""
     }
     // Ensure this array contains exactly 32 objects.
