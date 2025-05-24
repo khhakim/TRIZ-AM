@@ -9,210 +9,210 @@ const trizPrinciples = [
         name: "Segmentation",
         brief: "The designer increases manufacturability by dividing the artifact into smaller components where the part is larger than the expected build volume.",
         example: "A mask that is too large to be printed directly is segmented in the digital 3D model design phase into two smaller parts that can be combined. The two parts are printed separately and then combined.",
-        imageUrl: "" // Optional: Add a URL to an image, e.g., "images/segmentation.jpg"
+        imageUrl: "images/Picture1.png" // Optional: Add a URL to an image, e.g., "images/segmentation.jpg"
     },
     {
         number: 2,
         name: "Taking Out (Extraction)",
         brief: "Scaling artefacts and trimming or removing non-critical volumes and unnecessary parts, such as thick walls and hollow interiors, can ensure printability, reduce time and minimize weight.",
         example: "Taking the thick walls and internal fillings out of a printed part reduce sprinting time and weight.",
-        imageUrl: ""
+        imageUrl: "images/Picture2.jpg"
     },
     {
         number: 3,
         name: "Local Quality",
         brief: "Achieve a degree of freedom/desired behaviour by applying a customized material distribution: AM can manufacture parts with non-uniform wall thicknesses and generation of cellular structures(non-uniform) to improve efficiency.",
         example: "Increasing the density of the lower end of the scaffold structure in medical applications allows it to withstand greater loads.",
-        imageUrl: ""
+        imageUrl: "images/Picture3.png"
     },
      {
         number: 4,
         name: "Asymmetry",
         brief: "Anisotropic structures; designing the parts by considering the build orientation, utilizing the product orientation of a layer-like structure to increase the part’s strength in the direction of energy flow, especially for load-bearing parts for FDM.",
         example: "In the two opposite directions of constructing an eyeglass frame, in the case of the left side, not only does the support structure have to be added, but the subsequent surface treatment also becomes more problematic.",
-        imageUrl: ""
+        imageUrl: "images/Picture4.jpg"
     },
     {
         number: 5,
         name: "Merging",
         brief: "Integrate additional functionality for better functional performance and reduce assembly times, part sizes, and interfaces by integrating functional parts and standard geometries (e.g. threads, holes) into the design by printing a single part or printing to build the entire assemblies.",
         example: "In this example of a desk mount headphone hanger/clamp, standard threads and screw holes are integrated into the design of a single product.",
-        imageUrl: ""
+        imageUrl: "images/Picture5.jpg"
     },
      {
         number: 6,
         name: "Universality",
         brief: "Performing multiple functions by adding functional features in standard components.",
         example: "The handle of the toothbrush is designed as a hollow structure that can store toothpaste.",
-        imageUrl: ""
+        imageUrl: "images/Picture6.jpg"
     },
     {
         number: 7,
         name: "Nested Doll",
         brief: "Add function(s) to designs by incorporating components or functional features in unused internal volumes or non-functional aesthetic models.",
         example: "In this case, a model in the form of an elephant has been printed layer by layer, the tusks redesigned, and the top casing removed. This provides storage space and can be used as a mobile phone holder.",
-        imageUrl: ""
+        imageUrl: "images/Picture7.png"
     },
     {
         number: 8,
         name: "Preliminary Action",
         brief: "Design an object with features easily post-processed; otherwise, it will affect the actual design and shape.",
         example: "For example, producing holes using FDM may have an outcome such as burrs if the gap is too small; it is challenging to remove burrs.",
-        imageUrl: ""
+        imageUrl: "images/Picture8.jpg"
     },
     {
         number: 9,
         name: "Beforehand Cushioning",
         brief: "Designing parts that can be easily and temporarily replaced when replacement parts and tools are in short supply or when parts are prone to wear and tear increases the product's overall life. It allows for a quick return to production.",
         example: "Design parts that can easily be substituted temporarily when there is a shortage of parts or tools for replacement, such as the toy car tyre casing, have been designed to be replaced when worn.",
-        imageUrl: ""
+        imageUrl: "images/Picture9.png"
     },
     {
         number: 10,
         name: "The Other Way Around",
         brief: "The core thinking of the principle of the other way around is reverse thinking. If something is manufactured in one particular way, an attempt is made to manufacture it opposite to avoid inherent problems.",
         example: "This cap is designed to avoid the uncontrolled flow of liquid in the open state, thus reducing waste.",
-        imageUrl: ""
+        imageUrl: "images/Picture10.png"
     },
     {
         number: 11,
         name: "Spheroidality",
         brief: "AM enables the creation of complex topologically optimized geometries to design lighter, more organic, and unique-looking products with reduced mass and/or improved performance.",
         example: "Design lighter, more organic, aesthetically unique products using topology optimization (TO) methods.",
-        imageUrl: ""
+        imageUrl: "images/Picture11.png"
     },
     {
         number: 12,
         name: "Dynamics",
         brief: "Customized design according to its natural behaviour in controlled conditions allows for movement by connecting parts using an integrated connection on point/geometry to facilitate assembly and disassembly.",
         example: "The design can be customized according to its natural behaviour in controlled conditions, such as prosthetic hands.",
-        imageUrl: ""
+        imageUrl: "images/Picture12.png"
     },
     {
         number: 13,
         name: "Another Dimension",
         brief: "Designers can design parts using multi-scale structures on multiple levels of a single component, micro-scale/meson-scale/macro-scale.",
         example: "Designing parts with multi-functional artifacts involving multi-scale structures. The multi-scale system consists of micro, meso, and macro scales.",
-        imageUrl: ""
+        imageUrl: "images/Picture13.png"
     },
     {
         number: 14,
         name: "Blessing in Disguise",
         brief: "With AM, it is relatively easy to manufacture different patterns and textures embedded in the product's surface. Create customized textures or design multiple short overhangs to ensure good grip and interaction with the environment.",
         example: "3D Print soles with custom textures for added friction.",
-        imageUrl: ""
+        imageUrl: "images/Picture14.png"
     },
     {
         number: 15,
         name: "Self-Service",
         brief: "Designing an interlocking mechanism or incorporating snap fits into the part will provide a more permanent and adequate fit between components, reducing assembly time and the number of components.",
         example: "The designer implements snap fitting in a design instead of adding fasteners to an assembly. By doing this, all parts are created using a single machine.",
-        imageUrl: ""
+        imageUrl: "images/Picture15.png"
     },
     {
         number: 16,
         name: "Copying",
         brief: "Minimize design time and effort and simplify the assembly process by re-using the geometry of already designed components where CAD data is already available or by integrating standard geometries (e.g. standard threads, holes) into the design.",
         example: "When creating an accessory for a model tool, the designer can leverage an existing thread design rather than measuring and sizing the attachment thread on a model.",
-        imageUrl: ""
+        imageUrl: "images/Picture16.png"
     },
     {
         number: 17,
         name: "Cheap short-living",
         brief: "Some low-cost or wear-prone parts manufactured by traditional processes are more cost-effective than 3D direct printing, reducing costs and facilitating maintenance by incorporating a standard interface for that component in the design.",
         example: "The FDM prints the connections layer by layer and prepares the standard threaded holes in the connections. The required bolts and nuts can be made from existing standard bolts and nuts manufactured by the subtractive manufacturing process, which is cheaper, easier to obtain and stronger than FDM material.",
-        imageUrl: ""
+        imageUrl: "images/Picture17.png"
     },
     {
         number: 18,
         name: "Porous materials",
         brief: "Leverage the cellular structure. Replacing the solid volume with a cellular network reduces weight and material costs. The lattice structure can absorb energy through elastic or plastic movement, deformation, or breakage to keep the part stable, resulting in a lightweight but stiff product.",
         example: "A vase’s structure is replaced with a cellular structure to provide the same functionality with less material.",
-        imageUrl: ""
+        imageUrl: "images/Picture18.png"
     },
     {
         number: 19,
         name: "Colour changes",
         brief: "Convey information with colour using multi-colour AM: Some AM processes can build multi-material structures. Use the multi-material capability to embed and convey information through colour.",
         example: "Convey information about parts with colour coding. For example, with different coloured housings, cyan at the top, blue parts in the middle and orange for the base.",
-        imageUrl: ""
+        imageUrl: "images/Picture19.png"
     },
     {
         number: 20,
         name: "Discarding and recovering",
         brief: "Discarding refers to removing certain objects from the system, and regeneration refers to recovering certain objects in the system that have been consumed. In additive manufacturing, the principal manifestations are: (1) Remove the sharp edges in a design for better accuracy； (2) Prevent parts warping by reducing the cross-sectional area in each layer to reduce residual stresses or by designing rounded edges to increase surface area.",
         example: "Warping is caused by a build-up of residual stress in each layer as it cools. This effect is less intense when the cross-sectional area is reduced. Less residual stress in the layers while using less dense infill.",
-        imageUrl: ""
+        imageUrl: "images/Picture20.png"
     },
     {
         number: 21,
         name: "Parameter changes",
         brief: "The AM process can utilize various materials. Appropriate materials are used for different use cases. For example, using elastic materials to absorb energy, use flexible filaments to produce parts easily stretched or bent.",
         example: "Use flexible filaments to produce parts that can be easily stretched or bent, such as TPE or TPU materials.",
-        imageUrl: ""
+        imageUrl: "images/Picture21.png"
     },
     {
         number: 22,
         name: "Composite materials",
         brief: "Use composite materials to improve product properties, or utilize the capabilities of the AM process to create multi-material structures, using different materials in different parts of the component, designed to perform differently to achieve the desired properties.",
         example: "Implanting complex electronics through multi-material printing at the beginning of AM product manufacturing eliminates the need for manual assembly.",
-        imageUrl: ""
+        imageUrl: "images/Picture22.png"
     },
     {
         number: 23,
         name: "Minimize Vertical Aspect Ratio",
         brief: "Improve print success by orienting or redesigning a part to have a lower vertical aspect ratio.",
         example: "It was necessary to split the piece in two to make it more stable when printing. This is because its aspect ratio and small base make it unstable.",
-        imageUrl: ""
+        imageUrl: "images/Picture23.png"
     },
     {
         number: 24,
         name: "Improve the accuracy of critical curves and profile",
         brief: "Improve the accuracy of critical curves and profiles by orienting them in the plane of highest resolution.",
         example: "This example shows an object printed with an overhang from 40 to 75 degrees. As the angle to the vertical increases, the surface roughness increases, producing a low-resolution part. Therefore, positioning critical curves and contours in this vertical plane will have a better result than placing them elsewhere. ",
-        imageUrl: ""
+        imageUrl: "images/Picture24.png"
     },
     {
         number: 25,
         name: "Create Internal Chambers/ Channels",
         brief: "AM enables complex internal geometries to be created. Using customized internal channels/chambers, fluids can be directed and distributed or adjusted for specific physical processes occurring inside the chamber, such as energy or material conversion. It also helps to change the magnitude of energy (e.g. change acoustic or kinetic energy, increase/decrease pressure).",
         example: "Additive manufacturing allows for the integrated construction of complex internal cavity structures.",
-        imageUrl: ""
+        imageUrl: "images/Picture25.png"
     },
     {
         number: 26,
         name: "Personalization service",
         brief: "Use 3D scanning or custom design to personalize parts or products. This allows each product manufactured by AM to have different geometries, colors, additional text, and decorations to meet the different needs of different users.",
         example: "Orthotic insoles for flatfoot rehabilitation are printed and customized according to different people's foot shapes.",
-        imageUrl: ""
+        imageUrl: "images/Picture26.png"
     },
     {
         number: 27,
         name: "Leverage the Structure for Function",
         brief: "Achieve desired mechanical properties by tailoring the structure's geometry, such as creating void designs to conduct mechanical energy or forces with reduced weight.",
         example: "This example shows an example of a door latch that the intermediate structure itself can rotate.",
-        imageUrl: ""
+        imageUrl: "images/Picture27.png"
     },
     {
         number: 28,
         name: "Reduce print time",
         brief: "Reduce print time by orienting the shortest dimension parallel to the slowest fabrication direction.",
         example: "Orienting the shortest dimension of the part in a horizontal direction allows for faster and more stable printing. This is considered to be a standard best practice among experienced AM designers.",
-        imageUrl: ""
+        imageUrl: "images/Picture28.png"
     },
     {
         number: 29,
         name: "Functional joints and interfaces",
         brief: "Eliminating assembly steps and time and improving the overall strength and stability of the part by directly printing standard functional joints and interfaces or customizing the geometry to fit now with the geometry of other components for specific use cases.",
         example: "3D printed PCB circuit prototyping boards with a standard pin arrangement for easy connection of various electronic components such as sensors, LEDs and motors.",
-        imageUrl: ""
+        imageUrl: "images/Picture29.png"
     },
     {
         number: 30,
         name: "Scale for Requirement",
         brief: "Satisfy alternative functional and different parametric requirements by scaling the design.",
         example: "In this example, the parametric design tool allows the user to adjust or scale the size of the phone holder in the original design to suit different makes and models of phones.",
-        imageUrl: ""
+        imageUrl: "images/Picture30.png"
     },
     {
         number: 31,
@@ -226,7 +226,7 @@ const trizPrinciples = [
         name: "Modularity",
         brief: "Improve product flexibility by designing modular components that recombine to achieve different functionality.",
         example: "In this example, the drawers are designed as modular components, arranged in simple combinations to hold many items neatly and aesthetically pleasingly.",
-        imageUrl: ""
+        imageUrl: "images/Picture32.png"
     }
     // Ensure this array contains exactly 32 objects.
     // Principles 33-40 are now completely removed from this array.

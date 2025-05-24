@@ -309,6 +309,7 @@ nav .nav-links a:hover {
 .card-back-content img {
     max-width: 100%; /* Make image responsive */
     height: auto; /* Maintain aspect ratio */
+    max-height: 200px; /* Limit height to prevent overflow */
     display: block; /* Remove extra space below image */
     margin: 10px auto 0; /* Center image */
     border-radius: 5px;
