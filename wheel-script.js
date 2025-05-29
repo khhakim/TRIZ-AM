@@ -8,10 +8,7 @@ const winningNumberSpan = document.getElementById('winningNumber');
 const closeModalSpan = document.querySelector('.close-button');
 
 const segments = 32; // Number of segments (1-32)
-const wheelRadius = canvas.width / 2;
-const centerX = canvas.width / 2;
-const centerY = canvas.height / 2;
-const segmentAngle = (2 * Math.PI) / segments; // Angle in radians per segment
+const segmentAngle = (2 * Math.PI) / segments; // Angle in radians per segment (counter-clockwise)
 
 // Define colors for the segments (you can customize these)
 const colors = [
@@ -24,20 +21,23 @@ const colors = [
     '#BDB76B', '#87CEFA'
 ];
 
-// --- Drawing the Wheel ---
-function drawWheel() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    let startAngle = 0;
+// Helper function to draw the wheel content (segments and text)
+// This function assumes the context transform (translate/rotate) is already set by the caller
+function drawStaticWheelContent(ctx, centerX, centerY, wheelRadius, fontSize, segments, segmentAngle, colors) {
+     // Drawing starts from angle 0 (right) and goes counter-clockwise
+     let startAngle = 0;
 
     for (let i = 0; i < segments; i++) {
         const endAngle = startAngle + segmentAngle;
 
         // Draw segment
         ctx.beginPath();
+        // Draw from the center to the arc
         ctx.moveTo(centerX, centerY);
         ctx.arc(centerX, centerY, wheelRadius, startAngle, endAngle);
-        ctx.closePath();
-        ctx.fillStyle = colors[i % colors.length]; // Use colors cyclically
+        ctx.closePath(); // Connect back to the center
+
+        ctx.fillStyle = colors[i % colors.length];
         ctx.fill();
         ctx.strokeStyle = '#fff'; // White borders
         ctx.lineWidth = 2;
@@ -45,110 +45,156 @@ function drawWheel() {
 
         // Draw text (number)
         const text = (i + 1).toString(); // Numbers 1 to 32
-        const textAngle = startAngle + segmentAngle / 2; // Middle of the segment
-        const textRadius = wheelRadius * 0.75; // Position text closer to the edge
+        // Position text in the middle of the segment's angle, slightly away from the center
+        const textAngle = startAngle + segmentAngle / 2;
+        const textRadius = wheelRadius * 0.75; // Adjust distance from center
 
-        ctx.save(); // Save context state
+        ctx.save(); // Save context state before text transform
+        // Translate to the text position
         ctx.translate(centerX + Math.cos(textAngle) * textRadius, centerY + Math.sin(textAngle) * textRadius);
-        ctx.rotate(textAngle + Math.PI / 2); // Rotate text upright
-        ctx.fillStyle = '#000'; // Text color
-        ctx.font = 'bold 16px Arial, sans-serif';
+        // Rotate text upright (standard angle 0 is right, text pointing right; add PI/2 to point up)
+        ctx.rotate(textAngle + Math.PI / 2);
+        ctx.fillStyle = '#000';
+        ctx.font = `bold ${fontSize}px Arial, sans-serif`; // Use calculated font size
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(text, 0, 0);
         ctx.restore(); // Restore context state
 
-        startAngle = endAngle;
+        startAngle = endAngle; // Move to the start of the next segment
     }
 }
 
+
+// Main function to draw the wheel (used for initial draw and resize)
+function drawWheel() {
+    // Get the actual size of the canvas element based on CSS
+    const canvasWidth = canvas.clientWidth;
+    const canvasHeight = canvas.clientHeight;
+
+    // Set the internal drawing buffer size to match the display size
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    const wheelRadius = Math.min(canvasWidth, canvasHeight) / 2; // Use the smaller dimension for radius
+    const centerX = canvasWidth / 2;
+    const centerY = canvasHeight / 2;
+
+    // Determine font size based on wheel size for better readability
+    const baseFontSize = 16; // Starting font size for larger wheels (e.g., 400px diameter)
+    const minFontSize = 10; // Minimum font size
+    // Scale font size based on radius compared to the radius of a 400px wheel (200px)
+    const fontSize = Math.max(minFontSize, baseFontSize * (wheelRadius / 200));
+
+    // Clear and draw the static wheel content (no animation rotation here)
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    drawStaticWheelContent(ctx, centerX, centerY, wheelRadius, fontSize, segments, segmentAngle, colors);
+}
+
+
 // --- Spinning Logic ---
-let currentRotation = 0; // In radians
+let currentRotation = 0; // In radians (total accumulated rotation)
 let isSpinning = false;
+let animationFrameId = null; // To keep track of the animation frame
 
 function spin() {
     if (isSpinning) return; // Prevent multiple spins
     isSpinning = true;
     spinButton.disabled = true; // Disable button while spinning
 
-    // Calculate a random stop angle
-    // We want to stop within a segment. Each segment is segmentAngle wide.
-    // We need to stop slightly offset from the middle of a segment so the pointer
-    // clearly indicates which segment was chosen.
-    // The pointer is at the top (angle 270 degrees or 3*PI/2 radians if 0 is right).
-    // Our drawing starts with segment 1 roughly to the right (angle 0).
-    // To land on segment 'i' (0-31), we need to stop when the pointer is somewhere in its arc.
-    // Angle for segment 'i' is from i * segmentAngle to (i+1) * segmentAngle.
-    // Pointer is at 3*PI/2. So we need (currentRotation + segment.angle) % (2*PI) = 3*PI/2
-    // targetAngle = (segmentIndex * segmentAngle) + offset;
-    // We want the pointer (top, 3*PI/2) to align with a random segment's angle.
-    // Let's pick a target segment index first (0 to 31)
+    // Pick a target segment index (0 to 31)
     const targetSegmentIndex = Math.floor(Math.random() * segments);
-    const targetAngle = (targetSegmentIndex * segmentAngle) + (segmentAngle / 2); // Aim for the middle of the segment
 
-    // We need to rotate such that the target angle is under the pointer (3*PI/2).
-    // Desired final rotation (in radians, relative to start=0 being right):
-    // Let R be the total rotation. We want (0 - R) % (2*PI) to align targetSegmentAngle with 3*PI/2
-    // 3*PI/2 = (targetAngle - R) % (2*PI)
-    // R = (targetAngle - 3*PI/2 + 2*PI) % (2*PI) ...simplified rotation to land on target, but we need multiple spins
+    // Calculate the angle of the center of the target segment in the *unrotated* wheel
+    // Segment 'i' (0-31) corresponds to number 'i+1'.
+    // The angle range for segment 'i' is [i * segmentAngle, (i+1) * segmentAngle) starting from angle 0 (right) counter-clockwise.
+    const targetAngleRelativeUnrotatedWheel = targetSegmentIndex * segmentAngle + segmentAngle / 2;
 
-    // Add several full rotations (e.g., 5-10 full spins) plus the precise stopping angle
-    const fullSpins = 5 + Math.random() * 5; // 5 to 10 full spins
-    const totalRotationNeeded = fullSpins * (2 * Math.PI) + (2*Math.PI - targetAngle + 3*Math.PI/2) % (2*Math.PI) ;
-
-    // Ensure minimum rotation if targetAngle is close to the pointer initially
-     // If targetAngle is close to 3*PI/2, the modulo could result in a small rotation.
-     // We need a minimum number of rotations for the effect.
-     // Let's calculate the simple diff and add full spins.
-     let rotationDifference = (2*Math.PI + targetAngle - (3*Math.PI/2 + currentRotation % (2*Math.PI))) % (2*Math.PI);
-     if (rotationDifference < 0) rotationDifference += (2*Math.PI); // Ensure positive difference
-
-     const finalRotation = currentRotation + fullSpins * (2*Math.PI) + rotationDifference;
+    // The pointer is fixed at the top of the canvas, which is at angle 3*PI/2 (counter-clockwise from right).
+    // We need to rotate the wheel (counter-clockwise) such that the `targetAngleRelativeUnrotatedWheel` ends up at the 3*PI/2 position.
+    // Let R be the total rotation amount (currentRotation). We want the angle on the wheel that is at screen position 3*PI/2 to be `targetAngleRelativeUnrotatedWheel`.
+    // Screen angle = (Original Angle + Rotation) % (2*PI)
+    // 3*PI/2 = (targetAngleRelativeUnrotatedWheel + finalRotation) % (2*PI)
+    // finalRotation = (3*PI/2 - targetAngleRelativeUnrotatedWheel) % (2*PI)
+    // Adjust for modulo of negative numbers: Add 2*PI and take modulo again
+    let rotationNeededForAlignment = (3 * Math.PI / 2 - targetAngleRelativeUnrotatedWheel);
+    rotationNeededForAlignment = (rotationNeededForAlignment % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
 
 
-    const duration = 4000; // Spin duration in milliseconds
+    // Add several full rotations (e.g., 5-10 full spins) plus the needed alignment rotation
+    const fullSpins = 5 + Math.random() * 5; // Random number of full spins
+    const finalRotation = currentRotation + fullSpins * (2 * Math.PI) + rotationNeededForAlignment;
+
+    const duration = 5000; // Spin duration in milliseconds
     let startTime = null;
+    let startRotationForAnimation = currentRotation; // Capture starting rotation for easing
 
     function animate(timestamp) {
         if (!startTime) startTime = timestamp;
         const elapsed = timestamp - startTime;
         const progress = Math.min(elapsed / duration, 1); // Animation progress (0 to 1)
 
-        // Use an easing function (e.g., ease-out quint)
+        // Use an easing function (ease-out quint is good for spinning down)
         const easing = t => (--t) * t * t * t * t + 1;
         const easedProgress = easing(progress);
 
-        // Calculate current angle
-        currentRotation = finalRotation * easedProgress;
+        // Calculate the current rotation value based on easing
+        currentRotation = startRotationForAnimation + (finalRotation - startRotationForAnimation) * easedProgress;
 
-        // Draw the wheel rotated
-        ctx.save();
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.translate(centerX, centerY); // Move origin to center
-        ctx.rotate(currentRotation); // Rotate
-        ctx.translate(-centerX, -centerY); // Move origin back
-        drawWheel(); // Draw the wheel segments (without rotation logic inside draw)
-        ctx.restore();
+
+        // --- Drawing for the current frame ---
+        // Get current canvas dimensions (might change if window resizes during spin)
+        const currentCanvasWidth = canvas.clientWidth;
+        const currentCanvasHeight = canvas.clientHeight;
+        canvas.width = currentCanvasWidth; // Set drawing buffer size
+        canvas.height = currentCanvasHeight;
+
+        const currentCenterX = currentCanvasWidth / 2;
+        const currentCenterY = currentCanvasHeight / 2;
+        const currentWheelRadius = Math.min(currentCanvasWidth, currentCanvasHeight) / 2;
+        const baseFontSize = 16;
+        const minFontSize = 10;
+        const currentFontSize = Math.max(minFontSize, baseFontSize * (currentWheelRadius / 200));
+
+
+        ctx.clearRect(0, 0, currentCanvasWidth, currentCanvasHeight); // Clear the entire canvas
+
+        ctx.save(); // Save state BEFORE transforms
+        // Apply rotation transform relative to the center
+        ctx.translate(currentCenterX, currentCenterY);
+        ctx.rotate(currentRotation); // Apply the animated rotation
+        ctx.translate(-currentCenterX, -currentCenterY); // Move origin back
+
+        // Draw the static wheel content (segments and numbers)
+        // drawStaticWheelContent draws based on the dimensions and center provided,
+        // within the context that has already been rotated.
+        drawStaticWheelContent(ctx, currentCenterX, currentCenterY, currentWheelRadius, currentFontSize, segments, segmentAngle, colors);
+
+        ctx.restore(); // Restore state AFTER transforms
+
 
         if (progress < 1) {
-            requestAnimationFrame(animate);
+            animationFrameId = requestAnimationFrame(animate);
         } else {
             // Animation finished
             isSpinning = false;
             spinButton.disabled = false;
+            animationFrameId = null;
 
-            // Determine the winning segment index
-            // The total rotation is currentRotation
-            // The pointer is at 3*PI/2 relative to the canvas's top (0,0)
-            // We need to find which segment is at the 3*PI/2 mark after rotation.
-            // Angle relative to the *unrotated* wheel that is now at 3*PI/2 = (3*PI/2 - currentRotation)
-            let winningAngle = (3*Math.PI/2 - currentRotation) % (2*Math.PI);
-             if (winningAngle < 0) winningAngle += (2*Math.PI); // Ensure positive
+            // --- Determine Winning Segment ---
+            // The pointer is at 3*PI/2 (UP) relative to the canvas's top.
+            // The wheel has rotated by `currentRotation`.
+            // We need to find which segment's original angle is now positioned at 3*PI/2.
+            // Original Angle = (Pointer Angle - currentRotation) % (2*PI)
+            let winningAngleRelativeUnrotatedWheel = (3 * Math.PI / 2 - currentRotation);
+            // Normalize angle to be between 0 and 2*PI
+            winningAngleRelativeUnrotatedWheel = (winningAngleRelativeUnrotatedWheel % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
 
-            // Map angle to segment index (0-31)
-            const winningSegmentIndex = Math.floor(winningAngle / segmentAngle);
+            // Map the normalized angle to a segment index (0 to 31)
+            // The angle range for segment `i` (number `i+1`) is [i * segmentAngle, (i+1) * segmentAngle).
+            const winningSegmentIndex = Math.floor(winningAngleRelativeUnrotatedWheel / segmentAngle);
 
-            // The numbers are 1 to 32.
+            // The winning number is the segment index + 1
             const winningNumber = winningSegmentIndex + 1;
 
             // Show result modal
@@ -156,13 +202,14 @@ function spin() {
         }
     }
 
-    requestAnimationFrame(animate);
+    // Start the animation
+    animationFrameId = requestAnimationFrame(animate);
 }
 
 // --- Modal Functions ---
 function showModal(number) {
     winningNumberSpan.textContent = number;
-    modal.style.display = 'flex'; // Use flex to center
+    modal.style.display = 'flex'; // Use flex to center the modal-overlay content
 }
 
 function hideModal() {
@@ -180,6 +227,8 @@ window.addEventListener('click', (event) => {
     }
 });
 
+// Redraw the wheel if the window is resized
+window.addEventListener('resize', drawWheel);
 
 // --- Initial Drawing ---
 drawWheel(); // Draw the wheel when the script loads

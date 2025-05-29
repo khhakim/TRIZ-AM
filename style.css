@@ -483,123 +483,193 @@ nav .nav-links a:hover {
 
 /* Add to your existing style.css */
 
-/* --- Spin Wheel Styles --- */
+/* --- Spin Wheel Specific Styles --- */
+
+/* Container for the wheel area */
 .wheel-container {
-    text-align: center; /* Center content within the container */
+    /* Centers the content (like heading, paragraph, and the wheel area itself) */
+    text-align: center;
 }
 
+/* Area containing the canvas, pointer, and potentially spin button */
 .wheel-area {
-    position: relative; /* To position the pointer relative to this area */
-    width: 400px; /* Match canvas width */
-    height: 400px; /* Match canvas height */
-    margin: 20px auto; /* Center the wheel area */
-}
-
-#wheelCanvas {
-    display: block; /* Remove extra space below canvas */
-    margin: 0 auto; /* Ensure canvas itself is centered within wheel-area if needed */
-    /* Optional: Add a border for visualization */
+    /* Position relative allows absolute positioning of the pointer inside it */
+    position: relative;
+    /* Responsive width: Take up 90% of the parent width on small screens */
+    width: 90%;
+    /* Max width: Cap the size on larger screens so it doesn't get too big */
+    max-width: 400px;
+    /* Aspect Ratio: Ensure the area always remains square (width = height) */
+    aspect-ratio: 1 / 1;
+    /* Center the wheel area horizontally and add vertical space around it */
+    margin: 20px auto;
+    /* Optional: Add a border for visualization during development */
     /* border: 1px solid #ccc; */
 }
 
-.pointer {
-    position: absolute;
-    top: 0; /* Position at the top of the wheel */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Adjust for pointer's own width */
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 30px solid #ff0000; /* Red pointer triangle pointing down */
-    z-index: 10; /* Ensure pointer is above the canvas */
+/* The Canvas element where the wheel is drawn */
+#wheelCanvas {
+    /* Display as block to remove extra space below the element */
+    display: block;
+    /* Make the canvas fill the dimensions of its parent .wheel-area */
+    width: 100%;
+    height: 100%;
+    /* Ensure the canvas itself is centered within wheel-area */
+    margin: 0 auto;
 }
 
+/* The pointer indicating the winning segment */
+.pointer {
+    /* Position absolutely relative to the nearest positioned ancestor (.wheel-area) */
+    position: absolute;
+    /* Position at the top edge of the .wheel-area */
+    top: 0;
+    /* Center horizontally within .wheel-area */
+    left: 50%;
+    /* Adjust position based on the pointer's own width to truly center it */
+    transform: translateX(-50%);
+    /* Set width and height to 0 */
+    width: 0;
+    height: 0;
+    /* Create a triangle shape using borders */
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 30px solid #ff0000; /* This border creates the visible triangle pointing down */
+    /* Ensure pointer is drawn on top of the canvas */
+    z-index: 10;
+}
+
+/* Optional: Media query example to adjust pointer size on very small screens */
+/* @media (max-width: 400px) {
+    .pointer {
+        border-left-width: 10px;
+        border-right-width: 10px;
+        border-top-width: 20px;
+    }
+} */
+
+
+/* The Spin button */
 .spin-button {
+    /* Display as block to control margin for centering */
     display: block;
+    /* Center horizontally and add space above and below */
     margin: 20px auto;
+    /* Add padding inside the button */
     padding: 12px 25px;
+    /* Set font size */
     font-size: 1.1em;
+    /* Change cursor on hover */
     cursor: pointer;
-    background-color: #4CAF50; /* Green */
+    /* Set background color */
+    background-color: #4CAF50; /* Example green */
+    /* Set text color */
     color: white;
+    /* Remove default border */
     border: none;
+    /* Add rounded corners */
     border-radius: 5px;
+    /* Smooth transition for hover effect */
     transition: background-color 0.3s ease;
 }
 
+/* Hover effect for the button */
 .spin-button:hover {
-    background-color: #45a049;
+    background-color: #45a049; /* Darker green on hover */
 }
 
+/* Style for the button when it's disabled (e.g., during spin) */
 .spin-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+    background-color: #ccc; /* Grey background */
+    cursor: not-allowed; /* Indicate it's not clickable */
 }
 
 
 /* --- Modal (Popup) Styles --- */
+
+/* The overlay that covers the screen when the modal is active */
 .modal-overlay {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 100; /* Sit on top */
+    /* Hidden by default */
+    display: none;
+    /* Position fixed relative to the viewport */
+    position: fixed;
+    /* Sit on top of all other content */
+    z-index: 100;
+    /* Cover the entire screen */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    /* Center the modal content */
+    width: 100%;
+    height: 100%;
+    /* Enable scrolling if content overflows (unlikely for this small modal) */
+    overflow: auto;
+    /* Semi-transparent black background */
+    background-color: rgba(0,0,0,0.4);
+    /* Use flexbox to easily center the modal content */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
 }
 
+/* The actual content box of the modal */
 .modal-content {
+    /* White background */
     background-color: #fefefe;
-    margin: auto; /* Auto margins for centering */
+    /* Auto margins also help center with flex */
+    margin: auto;
+    /* Add padding inside the box */
     padding: 30px;
+    /* Rounded corners */
     border-radius: 8px;
+    /* Add a shadow for visual separation */
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    /* Max width on larger screens */
     max-width: 300px;
+    /* On smaller screens, take up most of the width */
+    width: 90%;
+    /* Center the text inside the modal */
     text-align: center;
-    position: relative; /* For absolute positioning of close button */
+    /* Needed for absolute positioning of the close button */
+    position: relative;
 }
 
+/* Heading inside the modal */
 .modal-content h3 {
     margin-top: 0;
     color: #333;
     font-size: 1.4em;
 }
 
+/* Style for the number display element */
 #winningNumber {
-    font-size: 2.5em;
-    color: #007bff; /* A prominent color */
+    font-size: 2.5em; /* Larger font size for emphasis */
+    color: #007bff; /* Example prominent color */
     font-weight: bold;
-    margin: 10px 0;
+    margin: 10px 0; /* Space above and below the number */
 }
 
+/* Style for the close button (X) */
 .close-button {
+    /* Position absolutely relative to the modal-content */
     position: absolute;
     top: 10px;
     right: 15px;
-    color: #aaa;
+    color: #aaa; /* Grey color */
     font-size: 28px;
     font-weight: bold;
-    cursor: pointer;
+    cursor: pointer; /* Change cursor on hover */
 }
 
+/* Hover/Focus state for the close button */
 .close-button:hover,
 .close-button:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+    color: #000; /* Darker color on hover/focus */
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Ensure cursor stays pointer */
 }
 
-/* Ensure modal is actually hidden initially */
-#resultModal {
-    display: none;
-}
+/* Note: The initial hiding of the modal (`display: none;`) is handled by the JavaScript when the page loads. */
+/* However, you could explicitly set it here if you prefer: */
+/* #resultModal { display: none; } */
 
 
 /* Footer */
