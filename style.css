@@ -481,6 +481,126 @@ nav .nav-links a:hover {
     margin-top: 20px;
 }
 
+/* Add to your existing style.css */
+
+/* --- Spin Wheel Styles --- */
+.wheel-container {
+    text-align: center; /* Center content within the container */
+}
+
+.wheel-area {
+    position: relative; /* To position the pointer relative to this area */
+    width: 400px; /* Match canvas width */
+    height: 400px; /* Match canvas height */
+    margin: 20px auto; /* Center the wheel area */
+}
+
+#wheelCanvas {
+    display: block; /* Remove extra space below canvas */
+    margin: 0 auto; /* Ensure canvas itself is centered within wheel-area if needed */
+    /* Optional: Add a border for visualization */
+    /* border: 1px solid #ccc; */
+}
+
+.pointer {
+    position: absolute;
+    top: 0; /* Position at the top of the wheel */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for pointer's own width */
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 30px solid #ff0000; /* Red pointer triangle pointing down */
+    z-index: 10; /* Ensure pointer is above the canvas */
+}
+
+.spin-button {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.spin-button:hover {
+    background-color: #45a049;
+}
+
+.spin-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+
+/* --- Modal (Popup) Styles --- */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    /* Center the modal content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Auto margins for centering */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    max-width: 300px;
+    text-align: center;
+    position: relative; /* For absolute positioning of close button */
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.4em;
+}
+
+#winningNumber {
+    font-size: 2.5em;
+    color: #007bff; /* A prominent color */
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Ensure modal is actually hidden initially */
+#resultModal {
+    display: none;
+}
+
 
 /* Footer */
 footer {
